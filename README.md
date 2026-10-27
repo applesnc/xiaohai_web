@@ -53,6 +53,8 @@ python -m pip install -r requirements.txt
 
 将 `cloud-client.example.json` 复制到 `.local-data/cloud-client.json`，填写客户端标识、签名参数、版本及 User-Agent。请从你有权使用的客户端配置中取得这些值。
 
+相关接入思路和协议参数的参考项目见文末[致谢](#致谢)。
+
 macOS / Linux：
 
 ```sh
@@ -151,6 +153,12 @@ python tests/browser_devices_check.py
 | `server.py` / `static/` | 本机 HTTP 服务与控制页面 |
 
 接口字段和兼容范围见 [PROTOCOL.md](PROTOCOL.md)。
+
+## 致谢
+
+感谢 [wenwenba/xiaohai-homeassistant](https://github.com/wenwenba/xiaohai-homeassistant) 分享小海智家的接入探索。该项目为本项目理解小海云接入方式、请求签名流程和客户端协议参数提供了参考，也可帮助使用者了解云端客户端配置。
+
+感谢作者公开分享相关思路与实践成果。
 
 ## License
 
