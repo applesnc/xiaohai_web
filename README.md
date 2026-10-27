@@ -1,6 +1,6 @@
 # 小海 · 家的控制台
 
-在电脑上连接小海智家云端，查看和控制灯光、窗帘、开关面板、空调、地暖和新风。
+面向 Windows、macOS 和 Linux 的本机 Web 控制台，连接小海智家云端，查看和控制灯光、窗帘、开关面板、空调、地暖和新风。
 
 页面和服务运行在本机 `127.0.0.1`，不依赖 Home Assistant、巴法云或家庭网络端口映射。本项目是社区工具，不是厂商官方客户端。
 
@@ -18,27 +18,47 @@
 
 ![演示界面](docs/demo.png)
 
-## 环境
+## 安装
 
-Python 3.12 或更高版本。Windows 可使用启动脚本；其他系统可直接运行 Python 服务。
+需要 Python 3.12 或更高版本，以及现代浏览器。三个平台均使用同一套 Python 服务和浏览器页面。以下命令在项目目录执行。
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+先获取代码：
+
+```sh
+git clone https://github.com/applesnc/xiaohai_web.git
+cd xiaohai_web
 ```
 
-Linux / macOS：
+### macOS / Linux
 
 ```sh
 python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
+
+### Windows PowerShell
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+后文的 `python` 命令均在已激活的虚拟环境中运行。新开终端后，先执行对应平台的激活命令。
 
 ## 云端客户端配置
 
 真实账号登录还需要与目标服务匹配、且你有权使用的客户端协议参数。公开代码不附带厂商的客户端签名密钥；只体验页面可直接使用演示模式。
 
 将 `cloud-client.example.json` 复制到 `.local-data/cloud-client.json`，填写客户端标识、签名参数、版本及 User-Agent。请从你有权使用的客户端配置中取得这些值。
+
+macOS / Linux：
+
+```sh
+mkdir -p .local-data
+cp cloud-client.example.json .local-data/cloud-client.json
+```
 
 Windows PowerShell：
 
@@ -49,15 +69,9 @@ Copy-Item -LiteralPath cloud-client.example.json -Destination .local-data/cloud-
 
 配置文件不需要账号密码。账号密码在本机页面填写，仅用于当前服务进程的云端登录和会话恢复。
 
-## 启动
+## 启动、停止与端口
 
-Windows 双击 `Start.cmd`，或执行：
-
-```powershell
-.\start.ps1 -OpenBrowser
-```
-
-其他系统或开发模式：
+三个平台使用相同的启动命令：
 
 ```sh
 python server.py --port 8766
@@ -65,9 +79,26 @@ python server.py --port 8766
 
 打开 <http://127.0.0.1:8766/>。可先选择“先看看演示”，再连接真实账号。
 
-Windows 使用 `Stop.cmd` 或 `.\stop.ps1` 停止。退出账号、停止进程，或者会话超过 12 小时未使用，将结束内存中的登录会话。重启后设备缓存仍在，但需要重新登录。
+在运行服务的终端按 `Ctrl+C` 停止。退出账号、停止进程，或者会话超过 12 小时未使用，将结束内存中的登录会话。重启后设备缓存仍在，但需要重新登录。
 
-端口冲突时可执行 `.\start.ps1 -Port 8767 -OpenBrowser`；停止时使用相同端口。
+端口冲突时，使用 `--port` 选择其他端口：
+
+```sh
+python server.py --port 8767
+```
+
+然后访问 <http://127.0.0.1:8767/>。
+
+### Windows 可选快捷方式
+
+Windows 还可以双击 `Start.cmd` 启动、双击 `Stop.cmd` 停止，或使用 PowerShell 脚本在后台运行：
+
+```powershell
+.\start.ps1 -Port 8766 -OpenBrowser
+.\stop.ps1 -Port 8766
+```
+
+这些脚本是便捷入口；macOS、Linux 和 Windows 都可以直接使用上面的 Python 命令。
 
 ## 数据保存
 
