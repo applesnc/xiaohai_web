@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="在本机连接小海智家，查看和控制家中的空调、地暖与新风。">
+  <title>小海 · 家的控制台</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" aria-hidden="true"><defs>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h11a4 4 0 0 0 0-8 6 6 0 0 0-11.6-2A5 5 0 0 0 7 18Z"/></symbol>
+    <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3v8m-5-6a9 9 0 1 0 10 0"/></symbol>
+    <symbol id="i-ac" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="10" rx="3"/><path d="M5 10h14M7 17v3m5-3v4m5-4v3M17 7h1"/></symbol>
+    <symbol id="i-heat" viewBox="0 0 24 24"><path d="M5 20V9a2 2 0 0 1 4 0v9a2 2 0 0 0 4 0V9a2 2 0 0 1 4 0v11M3 20h18M7 3v1m5-1v1m5-1v1"/></symbol>
+    <symbol id="i-fan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M10.6 10.6C4 7 7 1 12 3c3 1 1 5 0 7m2 2c6-4 10 2 6 6-3 2-5-2-7-4m-2 0c1 7-6 7-7 2 0-3 4-3 6-3"/></symbol>
+    <symbol id="i-switch" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="6"/><circle cx="15" cy="12" r="3"/></symbol>
+    <symbol id="i-light" viewBox="0 0 24 24"><path d="M8 15a6 6 0 1 1 8 0v3H8v-3Zm1 6h6M9 18h6"/></symbol>
+    <symbol id="i-curtain" viewBox="0 0 24 24"><path d="M3 3h18M4 4v16h6V4m4 0v16h6V4M7 6v11m10-11v11"/></symbol>
+    <symbol id="i-device" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 9h8m-8 4h4m3 3h1"/></symbol>
+    <symbol id="i-temp" viewBox="0 0 24 24"><path d="M9 14.5V5a3 3 0 0 1 6 0v9.5a5 5 0 1 1-6 0ZM12 8v10"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5M5.5 7a8 8 0 0 1 13-2L20 7M4 17l1.5 2a8 8 0 0 0 13-2"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="16" cy="17" r="3"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  </defs></svg>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="小海首页"><span class="brand-mark"><svg><use href="#i-home"/></svg></span><span>小海<span class="brand-sub">家的控制台</span></span></a>
+    <div class="home-selector"><span class="home-avatar">家</span><div><strong id="home-title">我的家庭</strong><span id="home-subtitle">还未连接账号</span></div><svg class="icon"><use href="#i-cloud"/></svg></div>
+    <div class="nav-label">空间</div>
+    <nav aria-label="主导航">
+      <button class="nav-item active" data-view="all"><svg class="icon"><use href="#i-grid"/></svg>全部设备<span id="nav-count" class="nav-count">0</span></button>
+      <button class="nav-item" data-view="favorites"><svg class="icon"><use href="#i-star"/></svg>我的常用</button>
+      <button class="nav-item" id="activity-open"><svg class="icon"><use href="#i-activity"/></svg>操作记录</button>
+    </nav>
+    <div class="nav-label room-label">房间<span id="room-count">0</span></div>
+    <nav id="room-nav" aria-label="房间筛选"><p class="room-placeholder">连接后自动读取房间</p></nav>
+    <div class="sidebar-bottom"><div class="local-badge"><span class="status-dot"></span>本机运行</div><p>每一个空间，都恰到好处。</p><button id="settings-open" class="nav-item"><svg class="icon"><use href="#i-settings"/></svg>连接设置</button><span class="version">XIAOHAI HOME · v2.0</span></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">我的家庭<span>/</span><strong id="breadcrumb-view">全部设备</strong></div><div class="topbar-right"><span id="today"></span><button class="connection-pill" id="connection-open"><span class="status-dot disconnected"></span><span id="connection-label">连接小海云</span><svg class="icon"><use href="#i-arrow"/></svg></button></div></header>
+    <main>
+      <div id="demo-banner" class="notice demo-notice" hidden><span><strong>演示模式</strong> · 以下是模拟设备，操作不会控制你家的设备。</span><button id="demo-connect">连接真实家庭 <span aria-hidden="true">↗</span></button></div>
+      <div id="warning-banner" class="notice warning-notice" role="status" hidden></div>
+      <section class="hero">
+        <div class="hero-content"><div class="eyebrow"><span></span>YOUR HOME, IN HARMONY</div><h1>让家，<br class="mobile-br">刚刚好。</h1><p id="hero-description">空调、地暖与新风，在一个页面里从容掌握。</p><div class="hero-footer"><span class="hero-chip"><svg class="icon"><use href="#i-shield"/></svg>凭据仅保留在本机内存</span><span class="hero-small" id="hero-status">等待与你的家庭连接</span></div></div>
+        <div class="home-art" aria-hidden="true"><svg viewBox="0 0 420 230" fill="none"><ellipse cx="218" cy="198" rx="150" ry="17" fill="#123f38" opacity=".35"/><circle cx="326" cy="54" r="35" fill="#f5cd83"/><path d="m91 92 109-61 124 67-113 62Z" fill="#dbdccc"/><path d="m91 92 120 68v47L91 139Z" fill="#a5b9aa"/><path d="m211 160 113-62v47l-113 62Z" fill="#f2e9d4"/><path d="M109 94V46l88 48v48Z" fill="#f4efdd"/><path d="m109 46 72-40 89 48-73 40Z" fill="#fff7e4"/><path d="m197 94 73-40v49l-73 39Z" fill="#cbd7c5"/><path d="m127 69 23 13v27l-23-13Z" fill="#588a7e"/><path d="m155 85 23 13v27l-23-13Z" fill="#588a7e"/><path d="m220 95 28-15v29l-28 15Z" fill="#73998a"/><path d="m213 159 36-20 44 24-36 20Z" fill="#d7ad71"/><path d="m240 121 31-17 34 18-32 18Z" fill="#e4d4b8"/><path d="m240 121 33 19v20l-33-19Z" fill="#e8dcc7"/><path d="m273 140 32-18v20l-32 18Z" fill="#c1b69e"/><path d="m173 152 27-15 38 21-27 15Z" fill="#d3b286"/><path d="m173 152 38 21v15l-38-21Z" fill="#ecd4b3"/><path d="m211 173 27-15v15l-27 15Z" fill="#c29c6d"/><path d="m137 136 15-8 15 8-15 9Z" fill="#799d7f"/><path d="m137 136 15 9v19l-15-9Zm15 9 15-9v19l-15 9Z" fill="#dbc39f"/><path d="M152 140V99" stroke="#4c7a57" stroke-width="3"/><path d="M153 123c-29-3-23-27-23-27 25 0 23 27 23 27Zm0-11c23-1 23-25 23-25-24 0-23 25-23 25Z" fill="#65967a"/><path d="m91 92 120 68 113-62" stroke="#fff6df" stroke-opacity=".45" stroke-width="2"/><path d="M341 140c18-10 25-4 25 3" stroke="#8ab4a3" stroke-width="2" stroke-linecap="round"/><path d="M351 150c14-8 22-2 22 4" stroke="#8ab4a3" stroke-width="2" stroke-linecap="round"/></svg></div>
+      </section>
+      <section class="stats" aria-label="家庭概况"><div class="stat"><span class="stat-icon"><svg class="icon"><use href="#i-grid"/></svg></span><div><span>全部设备</span><strong id="stat-all">—</strong></div><span class="stat-suffix">台</span></div><div class="stat"><span class="stat-icon green"><svg class="icon"><use href="#i-power"/></svg></span><div><span>正在运行</span><strong id="stat-on">—</strong></div><span class="stat-suffix">台</span></div><div class="stat"><span class="stat-icon sand"><svg class="icon"><use href="#i-home"/></svg></span><div><span>家庭空间</span><strong id="stat-rooms">—</strong></div><span class="stat-suffix">间</span></div><div class="stat"><span class="stat-icon blue"><svg class="icon"><use href="#i-cloud"/></svg></span><div><span>在线设备</span><strong id="stat-online">—</strong></div><span class="stat-suffix">台</span></div></section>
+      <section class="devices-section"><div class="section-heading"><div><h2 id="section-title">全部设备 <span id="section-count">0</span></h2><p id="sync-label">连接账号后，自动同步设备与房间</p></div><div class="section-actions"><label class="search"><svg class="icon"><use href="#i-search"/></svg><input id="search" type="search" placeholder="搜索设备或房间" aria-label="搜索设备或房间"></label><button class="icon-button" id="refresh" aria-label="刷新设备状态" title="刷新设备状态" disabled><svg class="icon"><use href="#i-refresh"/></svg></button></div></div>
+        <div class="mobile-tools"><select id="room-select" aria-label="选择房间"><option value="">所有房间</option></select><button id="mobile-activity" class="text-button">操作记录</button></div>
+        <div class="filter-row"><div id="type-filters" class="filters" aria-label="设备类型"><button class="filter active" data-type="all">全部</button><button class="filter" data-type="climate">空调</button><button class="filter" data-type="heating">地暖</button><button class="filter" data-type="fan">新风</button><button class="filter" data-type="light">灯光</button><button class="filter" data-type="curtain">窗帘</button><button class="filter" data-type="switch">开关面板</button><button class="filter" data-type="gateway">网关</button><button class="filter" data-type="other">其他</button></div><button id="online-filter" class="online-filter" aria-pressed="false"><span class="mini-toggle"></span>只看在线</button></div>
+        <div id="device-grid" class="device-grid"></div>
+        <div id="empty-state" class="empty-state"><div class="empty-symbol"><svg class="icon"><use href="#i-home"/></svg><span class="empty-cloud"><svg class="icon"><use href="#i-cloud"/></svg></span></div><h3>你的家，即将在这里相遇</h3><p>连接小海智家账号，读取家中的设备。<br>在公司，也能照顾家的温度。</p><button class="primary-button" id="empty-connect">连接我的家庭 <svg class="icon"><use href="#i-arrow"/></svg></button><button class="text-button" id="empty-demo">先看看演示</button></div>
+      </section>
+      <footer class="page-footer"><span><span class="status-dot"></span>本机页面 · 小海云连接</span><span>状态每 30 秒从云端更新 · 控制后自动回读</span></footer>
+    </main>
+  </div>
+  <dialog id="connection-dialog" class="connection-dialog"><div class="dialog-top"><span class="dialog-logo"><svg class="icon"><use href="#i-home"/></svg></span><button class="icon-button" data-close="connection-dialog" aria-label="关闭连接设置"><svg class="icon"><use href="#i-close"/></svg></button></div><h2 id="dialog-title">连接你的家庭</h2><p class="dialog-description">使用小海智家 App 的账号，直接连接小海云。</p><div id="connected-account" hidden><div class="account-summary"><span class="status-dot"></span><strong id="account-name"></strong><span id="account-kind"></span></div><button id="rediscover" class="secondary-button full">重新读取设备与功能</button><button id="disconnect" class="text-button danger full">退出当前连接</button></div><form id="login-form"><label>手机号或邮箱<input id="username" name="username" autocomplete="username" required maxlength="254" placeholder="小海智家登录账号"></label><label>密码<span class="password-field"><input id="password" name="password" type="password" autocomplete="current-password" required maxlength="512" placeholder="输入 App 登录密码"><button id="toggle-password" type="button" class="icon-button" aria-label="显示密码"><svg class="icon"><use href="#i-eye"/></svg></button></span></label><label class="country-label">国家码<input id="country" name="country_code" inputmode="numeric" pattern="[0-9]{1,4}" maxlength="4" value="86" required></label><p id="login-error" class="form-error" role="alert" hidden></p><button id="login-submit" class="primary-button full" type="submit">连接并读取设备 <svg class="icon"><use href="#i-arrow"/></svg></button></form><div class="privacy-note"><svg class="icon"><use href="#i-shield"/></svg><span>密码仅用于小海云登录，保留在本机服务内存中。退出或停止服务即清除，不写入配置文件。</span></div><button id="dialog-demo" class="text-button full">先体验演示家庭</button><p class="scope-note">按云端功能展示灯光、窗帘、多路开关、场景按键和冷暖控制。房间可在设备卡片中调整。</p></dialog>
+  <dialog id="room-dialog" class="connection-dialog"><div class="section-heading"><h2>调整设备房间</h2><button class="icon-button" data-close="room-dialog" aria-label="关闭房间设置"><svg class="icon"><use href="#i-close"/></svg></button></div><p id="room-device-name" class="dialog-description"></p><p id="room-source" class="dialog-description"></p><form id="room-form"><label>房间或分组<input id="room-name" list="room-options" required maxlength="32" autocomplete="off" placeholder="选择已有房间，或输入新名称"></label><datalist id="room-options"></datalist><button id="room-save" class="primary-button full" type="submit">保存房间分配</button></form><button id="room-reset" class="text-button full">恢复自动归类</button><p class="scope-note">只保存在本机当前账号下，不修改小海 App 的房间配置。</p></dialog>
+  <dialog id="activity-dialog" class="activity-dialog"><div class="section-heading"><h2>操作记录</h2><button class="icon-button" data-close="activity-dialog" aria-label="关闭操作记录"><svg class="icon"><use href="#i-close"/></svg></button></div><p class="dialog-description">仅记录当前连接期间的操作。云端状态确认不等同于现场运行验证。</p><div id="activity-list"></div></dialog>
+  <div id="toasts" class="toasts" aria-live="polite" aria-atomic="false"></div>
+</body>
+</html>

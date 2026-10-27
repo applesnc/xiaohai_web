@@ -1,0 +1,8 @@
+{
+  "endpoint": "https://smarthome-api.coli688.com/api.json",
+  "client_id": "REPLACE_WITH_YOUR_AUTHORIZED_APP_CLIENT_ID",
+  "signing_secret": "REPLACE_WITH_YOUR_AUTHORIZED_APP_SIGNING_SECRET",
+  "api_version": "1.0",
+  "encryption_version": "0.0.1",
+  "user_agent": "REPLACE_WITH_YOUR_APP_USER_AGENT"
+}
